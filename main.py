@@ -14,11 +14,10 @@ def open_file(value=None):
             text.delete(1.0, END)
             text.insert(END, file.read())
     current_file=file_path
+    
     if current_file:
         file_title = current_file.split('/')[-1]
     window.title(file_title + ' - Notpad ')
-
-
 
 def save_file(value=None):
     global current_file
@@ -52,39 +51,10 @@ def new_file(event=None):
             text.delete(1.0, END)
             content = file_path.name
     current_file = file_path.name
+    
     if current_file:
         file_content = current_file.split('/')[-1]
     window.title(file_content + ' - Notepad')
-
-# def check_changes_onText(event):
-#     global current_file
-#     current_file = True
-#     print('there are changes')
-#     update_title()
-
-
-
-
-#
-# def update_title():
-#     global current_file
-#     if current_file:
-#         print(window.title('*Untitled-Notepad'))
-#     else:
-#         print(window.title())
-
-# def check_file_saved():
-#     print("exit")
-    # response = messagebox.askyesnocancel(title='Notepad', message='Do you want to save changes to untitled')
-    # if response == 0:
-    #     window.destroy()
-    # else:
-    #     save_file()
-
-
-
-
-
 
 window = Tk()
 
@@ -113,20 +83,11 @@ edit_menu.add_command(label="Copy", accelerator="Ctrl+C")
 edit_menu.add_command(label="Paste", accelerator='Ctrl+V')
 edit_menu.add_command(label="Select All", accelerator='Ctrl+A')
 
-
-# Text - We use text when a user want to insert multiple lines
-
 text = scrolledtext.ScrolledText(window, selectbackground='yellow', selectforeground='black')
 text.pack(pady=1, expand=True, fill=BOTH)
-
-
 
 window.bind('<Control-n>', new_file)
 window.bind('<Control-s>', save_file)
 window.bind('<Control-o>', open_file)
-#
-# window.bind("<Key>",check_changes_onText)
-
-# window.protocol("WM_DELETE_WINDOW",check_file_saved)
 
 window.mainloop()
